@@ -1,0 +1,29 @@
+{
+    "name": "Screen Wipe (Combat)",
+    "description": "Screen wipe animation.",
+    "priority": 801001,
+    "conditions": [
+        {
+            "condition": "IsActorBase",
+            "requiredVersion": "1.0.0.0",
+            "Actor base": {
+                "pluginName": "Skyrim.esm",
+                "formID": "7"
+            }
+        },
+        {
+            "condition": "CompareValues",
+            "requiredVersion": "1.0.0.0",
+            "Value A": {
+                "form": {
+                    "pluginName": "ScreenBloodEnhanced.esp",
+                    "formID": "C"
+                }
+            },
+            "Comparison": "==",
+            "Value B": {
+                "value": 10
+            }
+        }
+    ]
+}

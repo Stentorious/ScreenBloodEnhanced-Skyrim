@@ -1,0 +1,19 @@
+# Default behavior
+* text=auto
+
+# Text files
+*.txt text
+*.psc text
+*.ini text
+*.xml text
+
+# Binary files
+*.esp binary
+*.esm binary
+*.dds binary
+*.nif binary
+*.dll binary
+*.pdb binary
+*.bsa binary
+*.pex binary
+*.swf binary

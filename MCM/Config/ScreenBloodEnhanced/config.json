@@ -1,0 +1,313 @@
+{
+	"$schema": "https://raw.githubusercontent.com/Exit-9B/MCM-Helper/main/docs/config.schema.json",
+	"modName": "ScreenBloodEnhanced",
+	"displayName": "$ScreenBloodEnhanced",
+	"minMcmVersion": 13,
+	"customContent": {
+		"source": "ScreenBloodEnhanced/Splash.dds",
+		"x": 120,
+		"y": 95
+	},
+	"pages": [
+		{
+			"pageDisplayName": "$General",
+			"cursorFillMode": "topToBottom",
+			"content": [
+				{
+					"text": "$Main",
+					"type": "header"
+				},
+				{
+					"id": "iEffectReceive:General",
+					"text": "$DamageTaken",
+					"type": "enum",
+					"help": "$DamageTakenHelp",
+					"valueOptions": {
+						"options": ["$Disabled", "$Vanilla"],
+						"sourceType": "ModSettingInt"
+					}
+				},
+				{
+					"id": "iEffectDeal:General",
+					"text": "$DamageDealt",
+					"type": "enum",
+					"help": "$DamageDealtHelp",
+					"valueOptions": {
+						"options": ["$Disabled", "$Enhanced"],
+						"sourceType": "ModSettingInt"
+					}
+				},
+				{
+					"type": "empty"
+				},
+				{
+					"text": "$Controls",
+					"type": "header"
+				},
+				{
+					"id": "iKeybind:Controls",
+					"type": "keymap",
+					"text": "$Keybind",
+					"help": "$KeybindHelp",
+					"ignoreConflicts": false,
+					"valueOptions": {
+						"sourceType": "ModSettingInt"
+					}
+				},
+				{
+					"type": "empty"
+				},
+				{
+					"text": "$Animation",
+					"type": "header"
+				},
+				{
+					"id": "iVariantDefault:Animation",
+					"text": "$VariantDefault",
+					"type": "enum",
+					"help": "$VariantDefaultHelp",
+					"valueOptions": {
+						"options": ["$Default", "$AltFaster"],
+						"sourceType": "ModSettingInt"
+					}
+				},
+				{
+					"id": "iVariantCombat:Animation",
+					"text": "$VariantCombat",
+					"type": "enum",
+					"help": "$VariantCombatHelp",
+					"valueOptions": {
+						"options": ["$Default", "$AltFaster"],
+						"sourceType": "ModSettingInt"
+					}
+				},
+				{
+					"id": "bLeftArmOnly:Animation",
+					"type": "toggle",
+					"text": "$LeftArmOnly",
+					"help": "$LeftArmOnlyHelp",
+					"valueOptions": {
+						"sourceType": "ModSettingBool"
+					}
+				}
+			]
+
+		},
+		{
+			"pageDisplayName": "$Effect",
+			"cursorFillMode": "topToBottom",
+			"content": [
+				{
+					"text": "$Visibility",
+					"type": "header"
+				},
+				{
+					"id": "fDistance:Visibility",
+					"text": "$Distance",
+					"type": "slider",
+					"help": "$DistanceHelp",
+					"valueOptions": {
+						"min": 0,
+						"max": 10,
+						"step": 0.1,
+						"sourceType": "ModSettingFloat",
+						"formatString": "{1}m"
+					}
+				},
+				{
+					"id": "fHeadingAngle:Visibility",
+					"text": "$HeadingAngle",
+					"type": "slider",
+					"help": "$HeadingAngleHelp",
+					"valueOptions": {
+						"min": 0,
+						"max": 180,
+						"step": 1,
+						"sourceType": "ModSettingFloat",
+						"formatString": "{0}°"
+					}
+				},
+				{
+					"type": "empty"
+				},
+				{
+					"text": "$Strength",
+					"type": "header"
+				},
+				{
+					"id": "iCount:BloodSplatter",
+					"text": "$Count",
+					"type": "slider",
+					"help": "$CountHelp",
+					"valueOptions": {
+						"min": 0,
+						"max": 20,
+						"step": 1,
+						"sourceType": "ModSettingInt"
+					}
+				},
+				{
+					"id": "fUnarmed:BloodSplatter",
+					"text": "$Unarmed",
+					"type": "slider",
+					"help": "$UnarmedHelp",
+					"valueOptions": {
+						"min": 0,
+						"max": 2,
+						"step": 0.1,
+						"sourceType": "ModSettingFloat",
+						"formatString": "{1}x"
+					}
+				},
+				{
+					"id": "fBlunt:BloodSplatter",
+					"text": "$Blunt",
+					"type": "slider",
+					"help": "$BluntHelp",
+					"valueOptions": {
+						"min": 0,
+						"max": 2,
+						"step": 0.1,
+						"sourceType": "ModSettingFloat",
+						"formatString": "{1}x"
+					}
+				},
+				{
+					"id": "fBlade:BloodSplatter",
+					"text": "$Blade",
+					"type": "slider",
+					"help": "$BladeHelp",
+					"valueOptions": {
+						"min": 0,
+						"max": 2,
+						"step": 0.1,
+						"sourceType": "ModSettingFloat",
+						"formatString": "{1}x"
+					}
+				},
+				{
+					"id": "fProjectile:BloodSplatter",
+					"text": "$Projectile",
+					"type": "slider",
+					"help": "$ProjectileHelp",
+					"valueOptions": {
+						"min": 0,
+						"max": 2,
+						"step": 0.1,
+						"sourceType": "ModSettingFloat",
+						"formatString": "{1}x"
+					}
+				},
+				{
+					"id": "fPowerAttack:BloodSplatter",
+					"text": "$PowerAttack",
+					"type": "slider",
+					"help": "$PowerAttackHelp",
+					"valueOptions": {
+						"min": 0,
+						"max": 2,
+						"step": 0.1,
+						"sourceType": "ModSettingFloat",
+						"formatString": "{1}x"
+					}
+				},
+				{
+					"text": "$Appearance",
+					"type": "header",
+					"position": 1
+				},
+				{
+					"id": "fDuration:BloodSplatter",
+					"text": "$Duration",
+					"type": "slider",
+					"help": "$DurationHelp",
+					"valueOptions": {
+						"min": 1,
+						"max": 60,
+						"step": 1,
+						"sourceType": "ModSettingFloat",
+						"formatString": "{0}s"
+					}
+				},
+				{
+					"id": "fSizeMin:BloodSplatter",
+					"text": "$SplatterSizeMin",
+					"type": "slider",
+					"help": "$SplatterSizeMinHelp",
+					"valueOptions": {
+						"min": 0,
+						"max": 2,
+						"step": 0.1,
+						"sourceType": "ModSettingFloat",
+						"formatString": "{1}x"
+					}
+				},
+				{
+					"id": "fSizeMax:BloodSplatter",
+					"text": "$SplatterSizeMax",
+					"type": "slider",
+					"help": "$SplatterSizeMaxHelp",
+					"valueOptions": {
+						"min": 0,
+						"max": 2,
+						"step": 0.1,
+						"sourceType": "ModSettingFloat",
+						"formatString": "{1}x"
+					}
+				},
+				{
+					"id": "fAlphaMin:BloodSplatter",
+					"text": "$SplatterAlphaMin",
+					"type": "slider",
+					"help": "$SplatterAlphaMinHelp",
+					"valueOptions": {
+						"min": 0,
+						"max": 1,
+						"step": 0.01,
+						"sourceType": "ModSettingFloat",
+						"formatString": "{2}x"
+					}
+				},
+				{
+					"id": "fAlphaMax:BloodSplatter",
+					"text": "$SplatterAlphaMax",
+					"type": "slider",
+					"help": "$SplatterAlphaMaxHelp",
+					"valueOptions": {
+						"min": 0,
+						"max": 1,
+						"step": 0.01,
+						"sourceType": "ModSettingFloat",
+						"formatString": "{2}x"
+					}
+				},
+				{
+					"id": "fFlareSize:BloodSplatter",
+					"text": "$FlareSize",
+					"type": "slider",
+					"help": "$FlareSizeHelp",
+					"valueOptions": {
+						"min": 0,
+						"max": 2,
+						"step": 0.1,
+						"sourceType": "ModSettingFloat",
+						"formatString": "{1}x"
+					}
+				},
+				{
+					"id": "fFlareAlpha:BloodSplatter",
+					"text": "$FlareAlpha",
+					"type": "slider",
+					"help": "$FlareAlphaHelp",
+					"valueOptions": {
+						"min": 0,
+						"max": 1,
+						"step": 0.01,
+						"sourceType": "ModSettingFloat",
+						"formatString": "{2}x"
+					}
+				}
+			]
+		}
+	]
+}
