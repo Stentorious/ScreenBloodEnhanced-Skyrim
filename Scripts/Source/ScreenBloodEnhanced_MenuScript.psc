@@ -55,6 +55,18 @@ Event OnGameReload()
 	if !MCM.IsInstalled()
 		Debug.MessageBox("Screen Blood Enhanced missing requirement!\nMCM Helper is not installed or not correctly loaded.")
 		return
+	elseif SKSE.GetPluginVersion("powerofthree's Papyrus Extender") == -1
+		Debug.MessageBox("Screen Blood Enhanced missing requirement!\npowerofthree's Papyrus Extender is not installed or not correctly loaded.")
+		return
+	elseif SKSE.GetPluginVersion("ConsoleUtilSSE") == -1
+		Debug.MessageBox("Screen Blood Enhanced missing requirement!\nConsoleUtilSSE is not installed or not correctly loaded.")
+		return
+	elseif SKSE.GetPluginVersion("Skypatcher") == -1
+		Debug.MessageBox("Screen Blood Enhanced missing requirement!\nSkyPatcher is not installed or not correctly loaded.")
+		return
+	elseif PlayerRef.GetAnimationVariableBool("bGPMAInstalled") == false
+		Debug.MessageBox("Screen Blood Enhanced missing requirement!\nOffset Movement Animations are installed or not correctly loaded.")
+		return
 	endIf
 
 	OnGameLoad()
