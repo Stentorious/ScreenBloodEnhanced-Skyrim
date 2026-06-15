@@ -42,7 +42,8 @@
 				},
 				{
 					"text": "$Controls",
-					"type": "header"
+					"type": "header",
+					"position": 1
 				},
 				{
 					"id": "iKeybind:Controls",
@@ -52,6 +53,28 @@
 					"ignoreConflicts": false,
 					"valueOptions": {
 						"sourceType": "ModSettingInt"
+					}
+				},
+				{
+					"id": "bAutoWipe:Controls",
+					"type": "toggle",
+					"text": "$AutoWipe",
+					"help": "$AutoWipeHelp",
+					"valueOptions": {
+						"sourceType": "ModSettingBool"
+					}
+				},
+				{
+					"id": "fAutoWipeDelay:Controls",
+					"text": "$AutoWipeDelay",
+					"type": "slider",
+					"help": "$AutoWipeDelayHelp",
+					"valueOptions": {
+						"min": 0,
+						"max": 10,
+						"step": 0.1,
+						"sourceType": "ModSettingFloat",
+						"formatString": "{1}s"
 					}
 				},
 				{

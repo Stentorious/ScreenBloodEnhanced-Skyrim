@@ -14,6 +14,7 @@ ReferenceAlias Property PlayerAlias Auto
 Race Property WerewolfBeastRace Auto
 
 ; mod
+Spell Property ScreenBloodEnhancedSpell_Combat Auto
 GlobalVariable Property ScreenBloodEnhancedGlobal_AnimTrigger Auto
 
 ; Config
@@ -27,12 +28,17 @@ GlobalVariable Property ScreenBloodEnhancedGlobal_Blade Auto
 GlobalVariable Property ScreenBloodEnhancedGlobal_Projectile Auto
 GlobalVariable Property ScreenBloodEnhancedGlobal_PowerAttack Auto
 GlobalVariable Property ScreenBloodEnhancedGlobal_LimbDismembered Auto
+GlobalVariable Property ScreenBloodEnhancedGlobal_AutoWipe Auto
+GlobalVariable Property ScreenBloodEnhancedGlobal_AutoWipeDelay Auto
 ;GlobalVariable Property ScreenBloodEnhancedGlobal_AnimDefault Auto
 ;GlobalVariable Property ScreenBloodEnhancedGlobal_AnimCombat Auto
 
+; Public
+bool Property bCombatState Auto
+
 ; Internal
 ; mod version
-float property fModVersion = 1.00 autoReadOnly
+float property fModVersion = 1.10 autoReadOnly
 ; anim parameters
 float Property fAnimLength_Default = 2.2 autoReadOnly
 float Property fAnimLength_Fast = 0.9 autoReadOnly
@@ -115,6 +121,8 @@ Function LoadSettings()
 	ScreenBloodEnhancedGlobal_Projectile.SetValue(GetModSettingFloat("fProjectile:BloodSplatter"))
 	ScreenBloodEnhancedGlobal_PowerAttack.SetValue(GetModSettingFloat("fPowerAttack:BloodSplatter"))
 	ScreenBloodEnhancedGlobal_LimbDismembered.SetValue(GetModSettingFloat("fLimbDismembered:BloodSplatter"))
+	ScreenBloodEnhancedGlobal_AutoWipe.SetValueInt(GetModSettingBool("bAutoWipe:Controls") as int)
+	ScreenBloodEnhancedGlobal_AutoWipeDelay.SetValue(GetModSettingFloat("fAutoWipeDelay:Controls"))
 
 	; Update GameSettings
 	Game.SetGameSettingInt("iBloodSplatterMaxCount", 200)
@@ -148,9 +156,19 @@ Function LoadSettings()
 
 	; Update event handlers
 	RegisterEvents(abRegister = true)
+	RefreshSpell()
 
 EndFunction
 
+Function RefreshSpell()
+	bCombatState = PlayerRef.IsInCombat()
+	if(PlayerRef.HasSpell(ScreenBloodEnhancedSpell_Combat))
+		PlayerRef.RemoveSpell(ScreenBloodEnhancedSpell_Combat)
+		PlayerRef.AddSpell(ScreenBloodEnhancedSpell_Combat)
+	else
+		PlayerRef.AddSpell(ScreenBloodEnhancedSpell_Combat)
+	endif
+EndFunction
 
 ; Update event handlers
 Function RegisterEvents(bool abRegister = true)
@@ -168,6 +186,25 @@ Function RegisterEvents(bool abRegister = true)
 	endif
 EndFunction
 
+Function InitAnimation()
+
+	if animStage > 0 || Game.GetCameraState() != 0 || Utility.IsInMenuMode() || UI.IsMenuOpen("Dialogue Menu") || PlayerRef.IsDead() || PlayerRef.IsInKillMove() || PlayerRef.IsSwimming() || !Game.IsFightingControlsEnabled()
+		return
+	endif
+
+	int iAnim = 0
+	if PlayerRef.GetCombatState() == 0
+		iAnim = GetModSettingInt("iVariantDefault:Animation")
+	else
+		iAnim = GetModSettingInt("iVariantCombat:Animation")
+	endif
+	if iAnim == 1
+		PlayAnimation(10, fAnimLength_Fast)
+	else
+		PlayAnimation(20, fAnimLength_Default)
+	endif
+
+EndFunction
 
 Function PlayAnimation(int animIndex, float animLength)
 
@@ -205,23 +242,7 @@ Function PlayAnimation(int animIndex, float animLength)
 EndFunction
 
 Event OnKeyDown(int keyCode)
-
-	if animStage > 0 || Game.GetCameraState() != 0 || Utility.IsInMenuMode() || UI.IsMenuOpen("Dialogue Menu") || PlayerRef.IsDead() || PlayerRef.IsInKillMove() || PlayerRef.IsSwimming() || !Game.IsFightingControlsEnabled()
-		return
-	endif
-
-	int iAnim = 0
-	if PlayerRef.GetCombatState() == 0
-		iAnim = GetModSettingInt("iVariantDefault:Animation")
-	else
-		iAnim = GetModSettingInt("iVariantCombat:Animation")
-	endif
-	if iAnim == 1
-		PlayAnimation(10, fAnimLength_Fast)
-	else
-		PlayAnimation(20, fAnimLength_Default)
-	endif
-
+	InitAnimation()
 EndEvent
 
 State PlayingAnimation
