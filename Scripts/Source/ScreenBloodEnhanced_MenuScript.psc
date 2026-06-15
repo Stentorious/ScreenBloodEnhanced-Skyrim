@@ -164,9 +164,9 @@ Function RefreshSpell()
 	bCombatState = PlayerRef.IsInCombat()
 	if(PlayerRef.HasSpell(ScreenBloodEnhancedSpell_Combat))
 		PlayerRef.RemoveSpell(ScreenBloodEnhancedSpell_Combat)
-		PlayerRef.AddSpell(ScreenBloodEnhancedSpell_Combat)
+		PlayerRef.AddSpell(ScreenBloodEnhancedSpell_Combat, false)
 	else
-		PlayerRef.AddSpell(ScreenBloodEnhancedSpell_Combat)
+		PlayerRef.AddSpell(ScreenBloodEnhancedSpell_Combat, false)
 	endif
 EndFunction
 
