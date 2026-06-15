@@ -11,6 +11,7 @@ int animStage = 0
 Actor Property PlayerRef Auto
 ImageSpaceModifier Property GetHit Auto
 ReferenceAlias Property PlayerAlias Auto
+Race Property WerewolfBeastRace Auto
 
 ; mod
 GlobalVariable Property ScreenBloodEnhancedGlobal_AnimTrigger Auto
@@ -64,7 +65,7 @@ Event OnGameReload()
 	elseif SKSE.GetPluginVersion("Skypatcher") == -1
 		Debug.MessageBox("Screen Blood Enhanced missing requirement!\nSkyPatcher is not installed or not correctly loaded.")
 		return
-	elseif PlayerRef.GetAnimationVariableBool("bGPMAInstalled") == false
+	elseif PlayerRef.GetAnimationVariableBool("bGPMAInstalled") == false && PlayerRef.GetRace() != WerewolfBeastRace
 		Debug.MessageBox("Screen Blood Enhanced missing requirement!\nOffset Movement Animations are installed or not correctly loaded.")
 		return
 	endIf
